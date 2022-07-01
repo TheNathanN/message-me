@@ -1,8 +1,22 @@
-import React from "react";
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { UserState } from "../../features/user/userSlice";
+import { setUser } from "../../features/user/userSlice";
+import { RootState } from "../../app/store";
+
 import { motion } from "framer-motion";
+import signInAnon from "../../helpers/signInAnon";
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state: RootState) => state.user);
+  const [newUser, setNewUser] = useState<UserState>(currentUser);
+
+  useEffect(() => {
+    dispatch(setUser(newUser));
+  }, [newUser, setUser, dispatch]);
+
   const signInBtns = [
     {
       id: "google",
@@ -37,6 +51,11 @@ const SignIn = () => {
               }}
               className="flex items-center justify-center w-72 bg-[#E0E0E0] text-2xl py-3 rounded-md mb-4 cursor-pointer hover:text-white"
               key={id}
+              onClick={
+                id === "guest"
+                  ? () => signInAnon(setNewUser)
+                  : () => console.log("No luck")
+              }
             >
               <i className={icon}></i>
               <p className="w-44 ml-2">{text}</p>

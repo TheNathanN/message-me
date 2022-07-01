@@ -3,17 +3,17 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 
 // Define a type for the slice state
-interface UserState {
-  id: string;
-  userName: string;
+export interface UserState {
+  uid: string;
+  displayName: string;
   email: string;
   photoURL: string;
 }
 
 // Define the initial state using that type
 const initialState: UserState = {
-  id: "",
-  userName: "",
+  uid: "",
+  displayName: "",
   email: "",
   photoURL: "",
 };
@@ -24,10 +24,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
-      const { id, email, userName, photoURL } = action.payload;
-      state.id = id;
+      const { uid, email, displayName, photoURL } = action.payload;
+      state.uid = uid;
       state.email = email;
-      state.userName = userName;
+      state.displayName = displayName;
       state.photoURL = photoURL;
     },
   },

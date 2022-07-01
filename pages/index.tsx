@@ -2,8 +2,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script";
 import SignIn from "../components/SignIn";
+import { useAppSelector } from "../app/hooks";
 
 const Home: NextPage = () => {
+  const user = useAppSelector(state => state.user);
+  console.log(user);
   return (
     <div className="bg-[#FAFAFA] min-w-screen min-h-screen">
       <Head>
