@@ -7,7 +7,7 @@ import MessageRoom from "../components/MessageRoom";
 
 const Home: NextPage = () => {
   const user = useAppSelector(state => state.user);
-  console.log(user);
+
   return (
     <div className="bg-[#FAFAFA] min-w-screen min-h-screen">
       <Head>

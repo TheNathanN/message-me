@@ -7,6 +7,7 @@ import { RootState } from "../../app/store";
 
 import { motion } from "framer-motion";
 import signInAnon from "../../helpers/auth/signInAnon";
+import signInGoogle from "../../helpers/auth/signInGoogle";
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ const SignIn = () => {
               onClick={
                 id === "guest"
                   ? () => signInAnon(setNewUser)
-                  : () => console.log("No luck")
+                  : () => signInGoogle(setNewUser)
               }
             >
               <i className={icon}></i>

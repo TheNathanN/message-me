@@ -15,8 +15,15 @@ const signInGoogle = async (
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
     // The signed-in user info.
-    const user = result.user;
-    console.log(user);
+    const { uid, email, displayName, photoURL } = result.user;
+    const anonUser = {
+      uid: uid === null ? "" : uid,
+      email: email === null ? "" : email,
+      displayName: displayName === null ? "Anon" : displayName,
+      photoURL: photoURL === null ? "/assets/guest-icon.png" : photoURL,
+    };
+
+    setUser(anonUser);
   } catch (err) {
     console.log(err);
   }
