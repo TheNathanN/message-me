@@ -1,10 +1,10 @@
-import firebase from "../app/firebase";
+import firebase from "../../app/firebase";
 import { getAuth, signInAnonymously } from "firebase/auth";
-import { UserState } from "../features/user/userSlice";
+import { UserState } from "../../features/user/userSlice";
 
 const auth = getAuth(firebase);
 
-const anonSignIn = async (
+const signInAnon = async (
   setUser: React.Dispatch<React.SetStateAction<UserState>>
 ) => {
   try {
@@ -13,8 +13,8 @@ const anonSignIn = async (
     const anonUser = {
       uid: uid === null ? "" : uid,
       email: email === null ? "" : email,
-      displayName: displayName === null ? "" : displayName,
-      photoURL: photoURL === null ? "" : photoURL,
+      displayName: displayName === null ? "Anon" : displayName,
+      photoURL: photoURL === null ? "/assets/guest-icon.png" : photoURL,
     };
     setUser(anonUser);
   } catch (err) {
@@ -22,4 +22,4 @@ const anonSignIn = async (
   }
 };
 
-export default anonSignIn;
+export default signInAnon;

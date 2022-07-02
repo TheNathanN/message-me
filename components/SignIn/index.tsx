@@ -6,7 +6,7 @@ import { setUser } from "../../features/user/userSlice";
 import { RootState } from "../../app/store";
 
 import { motion } from "framer-motion";
-import signInAnon from "../../helpers/signInAnon";
+import signInAnon from "../../helpers/auth/signInAnon";
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -32,8 +32,8 @@ const SignIn = () => {
 
   return (
     <div className="flex flex-col items-center h-screen">
-      <div className="my-16">
-        <Image src={"/assets/logo.png"} width={320} height={300} />
+      <div className="my-8">
+        <Image src={"/assets/logo.png"} width={220} height={200} />
       </div>
       <div className="text-center mt-5">
         <h1 className="text-5xl mb-8">Sign In</h1>

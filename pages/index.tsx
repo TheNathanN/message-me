@@ -3,6 +3,7 @@ import Head from "next/head";
 import Script from "next/script";
 import SignIn from "../components/SignIn";
 import { useAppSelector } from "../app/hooks";
+import MessageRoom from "../components/MessageRoom";
 
 const Home: NextPage = () => {
   const user = useAppSelector(state => state.user);
@@ -18,9 +19,7 @@ const Home: NextPage = () => {
         crossOrigin="anonymous"
       />
 
-      <main>
-        <SignIn />
-      </main>
+      <main>{user.uid === "" ? <SignIn /> : <MessageRoom />}</main>
     </div>
   );
 };
