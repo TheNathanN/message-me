@@ -30,7 +30,6 @@ const SignIn = () => {
         const user = { uid, displayName, email, photoURL };
         setNewUser(user);
       }
-      console.log("ran");
     });
   }
 
