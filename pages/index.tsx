@@ -8,9 +8,9 @@ import MessageRoom from "../components/MessageRoom";
 const Home: NextPage = () => {
   const user = useAppSelector(state => state.user);
   console.log(user);
-  
+
   return (
-    <div className="bg-[#FAFAFA] min-w-screen min-h-screen">
+    <>
       <Head>
         <title>Message Me!</title>
         <link rel="icon" href="/assets/logo.png" />
@@ -20,8 +20,10 @@ const Home: NextPage = () => {
         crossOrigin="anonymous"
       />
 
-      <main>{user.uid === "" ? <SignIn /> : <MessageRoom />}</main>
-    </div>
+      <main className="h-screen">
+        {user.uid === "" ? <SignIn /> : <MessageRoom />}
+      </main>
+    </>
   );
 };
 
