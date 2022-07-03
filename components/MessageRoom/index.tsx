@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useAppSelector } from "../../app/hooks";
+
 import { DocumentData } from "firebase/firestore";
-import Nav from "../Nav";
 import getMessages from "../../helpers/db/getMessages";
+
 import MessagesSection from "./MessagesSection";
 import MessageInput from "./MessageInput";
+import Nav from "../Nav";
 
 const MessageRoom = () => {
   const [messageData, setMessageData] = useState<DocumentData>();
@@ -22,7 +24,11 @@ const MessageRoom = () => {
       <Nav />
       <div className="flex flex-col items-center h-[85%]">
         <MessagesSection messages={messages} user={user} />
-        <MessageInput />
+        <MessageInput
+          room={room}
+          messages={messages}
+          setMessageData={setMessageData}
+        />
       </div>
     </>
   );

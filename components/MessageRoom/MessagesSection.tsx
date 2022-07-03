@@ -8,7 +8,7 @@ interface Props {
 
 const MessagesSection = ({ messages, user }: Props) => {
   return (
-    <section className="h-full py-4 overflow-scroll w-10/12">
+    <section className="h-full py-4 overflow-scroll w-10/12 my-4">
       {messages &&
         messages.map((message: any) => (
           <div
