@@ -1,18 +1,38 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { UserState } from "../../features/user/userSlice";
 import { setUser } from "../../features/user/userSlice";
 import { RootState } from "../../app/store";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { motion } from "framer-motion";
 import signInAnon from "../../helpers/auth/signInAnon";
 import signInGoogle from "../../helpers/auth/signInGoogle";
 
 const SignIn = () => {
+  const auth = getAuth();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state: RootState) => state.user);
   const [newUser, setNewUser] = useState<UserState>(currentUser);
+
+  if (newUser.uid === "") {
+    onAuthStateChanged(auth, currentUser => {
+      if (
+        currentUser &&
+        currentUser.displayName &&
+        currentUser.email &&
+        currentUser.photoURL
+      ) {
+        const { uid, displayName, email, photoURL } = currentUser;
+        const user = { uid, displayName, email, photoURL };
+        setNewUser(user);
+      }
+      console.log("ran");
+    });
+  }
 
   useEffect(() => {
     dispatch(setUser(newUser));
@@ -54,8 +74,14 @@ const SignIn = () => {
               key={id}
               onClick={
                 id === "guest"
-                  ? () => signInAnon(setNewUser)
-                  : () => signInGoogle(setNewUser)
+                  ? async () => {
+                      await signInAnon(setNewUser);
+                      router.push("/default_room");
+                    }
+                  : async () => {
+                      await signInGoogle(setNewUser);
+                      router.push("/default_room");
+                    }
               }
             >
               <i className={icon}></i>

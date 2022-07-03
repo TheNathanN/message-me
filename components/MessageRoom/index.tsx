@@ -5,8 +5,8 @@ import { DocumentData } from "firebase/firestore";
 import { useAppSelector } from "../../app/hooks";
 
 const MessageRoom = () => {
-  const [room, setRoom] = useState("default_room");
   const [messageData, setMessageData] = useState<DocumentData>();
+  const [room, setRoom] = useState("default_room");
   const user = useAppSelector(state => state.user);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const MessageRoom = () => {
   }, [room, getMessages, setMessageData]);
 
   const messages = messageData?.messages;
-
   return (
     <>
       <Nav />

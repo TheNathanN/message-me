@@ -2,13 +2,14 @@ import { collection, DocumentData, getDocs } from "firebase/firestore";
 import db from "./db";
 
 const getMessages = async (
-  room = "default_room",
+  room: string | string[] | undefined,
   setMessages: React.Dispatch<React.SetStateAction<DocumentData | undefined>>
 ) => {
-  const querySnapshot = await getDocs(collection(db, room));
-  const messages = querySnapshot.docs[0].data();
-
-  setMessages(messages);
+  if (typeof room === "string") {
+    const querySnapshot = await getDocs(collection(db, room));
+    const messages = querySnapshot.docs[0].data();
+    setMessages(messages);
+  }
 };
 
 export default getMessages;

@@ -12,8 +12,10 @@ const signInGoogle = async (
   try {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const result = await signInWithPopup(auth, provider);
+
     // const credential = GoogleAuthProvider.credentialFromResult(result);
     // const token = credential?.accessToken;
+
     // The signed-in user info.
     const { uid, email, displayName, photoURL } = result.user;
     const anonUser = {

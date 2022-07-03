@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
 import SignIn from "../components/SignIn";
@@ -7,7 +8,6 @@ import MessageRoom from "../components/MessageRoom";
 
 const Home: NextPage = () => {
   const user = useAppSelector(state => state.user);
-  console.log(user);
 
   return (
     <>
