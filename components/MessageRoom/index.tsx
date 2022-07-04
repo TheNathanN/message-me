@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useAppSelector } from "../../app/hooks";
 
-import { DocumentData } from "firebase/firestore";
+import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 import getMessages from "../../helpers/db/getMessages";
 
 import MessagesSection from "./MessagesSection";
 import MessageInput from "./MessageInput";
 import Nav from "../Nav";
+import db from "../../helpers/db/db";
 
 const MessageRoom = () => {
   const [messageData, setMessageData] = useState<DocumentData>();
   const [room, setRoom] = useState("default_room");
   const user = useAppSelector(state => state.user);
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, room, "messages"), doc => {
+      setMessageData(doc.data());
+    });
+
+    return unSub;
+  }, [room, db, setMessageData]);
 
   useEffect(() => {
     getMessages(room, setMessageData);

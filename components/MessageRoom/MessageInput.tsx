@@ -33,10 +33,6 @@ const MessageInput = ({ room, messages, setMessageData }: Props) => {
       await addMessage(room, input, sender);
       setInput("");
     }
-
-    onSnapshot(doc(db, room, "messages"), doc => {
-      setMessageData(doc.data());
-    });
   };
 
   return (
