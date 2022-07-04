@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
 import SignIn from "../components/SignIn";

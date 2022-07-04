@@ -51,7 +51,7 @@ const MessageInput = ({ room, messages, setMessageData }: Props) => {
       />
       <motion.button
         onClick={clickHandler}
-        whileHover="visible"
+        whileHover="blackVisible"
         variants={rainbowHoverVariant}
         className="absolute h-full w-[15%] right-0 bg-black text-xs text-white rounded-full"
       >

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 
 import { rainbowHoverVariant } from "../../helpers/animations";
 import { motion } from "framer-motion";
@@ -13,13 +12,11 @@ interface Props {
 }
 
 const SignInBtn = ({ info, setNewUser }: Props) => {
-  const router = useRouter();
-
   const { id, icon, text } = info;
 
   return (
     <motion.div
-      whileHover="visible"
+      whileHover="grayVisible"
       variants={rainbowHoverVariant}
       className="flex items-center justify-center w-72 bg-[#E0E0E0] text-2xl py-3 rounded-md mb-4 cursor-pointer hover:text-white"
       key={id}
@@ -27,11 +24,9 @@ const SignInBtn = ({ info, setNewUser }: Props) => {
         id === "guest"
           ? async () => {
               await signInAnon(setNewUser);
-              router.push("/default_room");
             }
           : async () => {
               await signInGoogle(setNewUser);
-              router.push("/default_room");
             }
       }
     >
