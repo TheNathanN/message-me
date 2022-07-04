@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { UserState } from "../../features/user/userSlice";
 
 interface Props {
@@ -7,6 +7,14 @@ interface Props {
 }
 
 const MessagesSection = ({ messages, user }: Props) => {
+  const messageEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
   return (
     <section className="h-full py-4 overflow-scroll w-10/12 my-4">
       {messages &&
@@ -30,6 +38,7 @@ const MessagesSection = ({ messages, user }: Props) => {
             </p>
           </div>
         ))}
+      <div ref={messageEndRef} />
     </section>
   );
 };

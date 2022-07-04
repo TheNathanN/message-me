@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { UserState } from "../../features/user/userSlice";
 import { setUser } from "../../features/user/userSlice";
@@ -11,7 +10,6 @@ import SignInBtn from "./SignInBtn";
 
 const SignIn = () => {
   const auth = getAuth();
-  const router = useRouter();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector((state: RootState) => state.user);
   const [newUser, setNewUser] = useState<UserState>(currentUser);
@@ -33,7 +31,7 @@ const SignIn = () => {
 
   useEffect(() => {
     dispatch(setUser(newUser));
-  }, [newUser, setUser, dispatch]);
+  }, [newUser, dispatch]);
 
   const signInBtns = [
     {
@@ -51,7 +49,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-col items-center h-screen">
       <div className="my-8">
-        <Image src={"/assets/logo.png"} width={220} height={200} />
+        <Image src={"/assets/logo.png"} width={220} height={200} alt="logo" />
       </div>
       <div className="text-center mt-5">
         <h1 className="text-5xl mb-8">Sign In</h1>

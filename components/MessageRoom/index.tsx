@@ -20,11 +20,11 @@ const MessageRoom = () => {
     });
 
     return unSub;
-  }, [room, db, setMessageData]);
+  }, [room, setMessageData]);
 
   useEffect(() => {
     getMessages(room, setMessageData);
-  }, [room, getMessages, setMessageData]);
+  }, [room, setMessageData]);
 
   const messages = messageData?.messages;
 
