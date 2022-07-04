@@ -42,7 +42,7 @@ const MessageInput = ({ room, messages, setMessageData }: Props) => {
   return (
     <form className="w-10/12 relative">
       <input
-        className="border-black border-[1px] rounded-full w-full pl-3 pr-10 h-10 outline-none shadow-xl"
+        className="border-black border-[1px] rounded-full w-full pl-3 pr-[15%] h-10 outline-none shadow-xl"
         type="text"
         name="message"
         id="message"
