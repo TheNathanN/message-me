@@ -5,14 +5,12 @@ import { setMobileMenu } from "../../features/mobileMenu/mobileMenuSlice";
 import { setUser } from "../../features/user/userSlice";
 import signOutAuth from "../../helpers/auth/signOutAuth";
 import getRooms from "../../helpers/db/getRooms";
-import { DocumentData } from "firebase/firestore";
 import { setRoom } from "../../features/room/roomSlice";
 
 const Menu = () => {
   const dispatch = useAppDispatch();
   const room = useAppSelector(state => state.room.roomName);
-  const [rooms, setRooms] = useState<DocumentData>();
-  const [roomNames, setRoomNames] = useState<string[]>();
+  const [rooms, setRooms] = useState<string[]>();
   const [loggedOutUser, setLoggedOutUser] = useState({
     uid: "",
     displayName: "",
@@ -30,13 +28,6 @@ const Menu = () => {
     getRooms(setRooms);
   }, [setRooms]);
 
-  useEffect(() => {
-    if (rooms) {
-      const roomNamesArr = Object.keys(rooms);
-      setRoomNames(roomNamesArr);
-    }
-  }, [rooms, setRoomNames]);
-
   return (
     <motion.div
       initial={{ x: "100vw" }}
@@ -48,8 +39,8 @@ const Menu = () => {
       <div className="w-full text-center">
         <h2 className="text-3xl">Chat Rooms</h2>
         <div className="w-full flex flex-col items-center mt-4">
-          {roomNames &&
-            roomNames.map(name => (
+          {rooms &&
+            rooms.map(name => (
               <div
                 className={`${
                   room === name ? "border-black border-2" : ""
