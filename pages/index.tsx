@@ -4,9 +4,11 @@ import Script from "next/script";
 import SignIn from "../components/SignIn";
 import { useAppSelector } from "../app/hooks";
 import MessageRoom from "../components/MessageRoom";
+import Menu from "../components/Menu";
 
 const Home: NextPage = () => {
   const user = useAppSelector(state => state.user);
+  const mobileMenuShown = useAppSelector(state => state.mobileMenu.shown);
 
   return (
     <>
@@ -19,7 +21,8 @@ const Home: NextPage = () => {
         crossOrigin="anonymous"
       />
 
-      <main className="h-screen">
+      <main className="h-screen relative">
+        {mobileMenuShown && <Menu />}
         {user.uid === "" ? <SignIn /> : <MessageRoom />}
       </main>
     </>

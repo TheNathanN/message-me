@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { rainbowHoverVariant } from "../../helpers/animations";
 import { Sender } from "../../types";
 import { useAppSelector } from "../../app/hooks";
-import { doc, DocumentData, onSnapshot } from "firebase/firestore";
+import { DocumentData } from "firebase/firestore";
 import db from "../../helpers/db/db";
 
 interface Props {

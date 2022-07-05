@@ -16,9 +16,13 @@ const addMessage = async (room: string, message: string, sender: Sender) => {
 
   const messagesRef = doc(db, room, "messages");
 
-  await updateDoc(messagesRef, {
-    messages: arrayUnion(newMessage),
-  });
+  try {
+    await updateDoc(messagesRef, {
+      messages: arrayUnion(newMessage),
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default addMessage;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useAppSelector } from "../../app/hooks";
 
 import { doc, DocumentData, onSnapshot } from "firebase/firestore";
@@ -11,7 +11,7 @@ import db from "../../helpers/db/db";
 
 const MessageRoom = () => {
   const [messageData, setMessageData] = useState<DocumentData>();
-  const [room, setRoom] = useState("default_room");
+  const room = useAppSelector(state => state.room.roomName);
   const user = useAppSelector(state => state.user);
 
   useEffect(() => {

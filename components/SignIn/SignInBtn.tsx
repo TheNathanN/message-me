@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { rainbowHoverVariant } from "../../helpers/animations";
 import { motion } from "framer-motion";
@@ -19,15 +19,10 @@ const SignInBtn = ({ info, setNewUser }: Props) => {
       whileHover="grayVisible"
       variants={rainbowHoverVariant}
       className="flex items-center justify-center w-72 bg-[#E0E0E0] text-2xl py-3 rounded-md mb-4 cursor-pointer hover:text-white"
-      key={id}
       onClick={
         id === "guest"
-          ? async () => {
-              await signInAnon(setNewUser);
-            }
-          : async () => {
-              await signInGoogle(setNewUser);
-            }
+          ? async () => await signInAnon(setNewUser)
+          : async () => await signInGoogle(setNewUser)
       }
     >
       <i className={icon}></i>
