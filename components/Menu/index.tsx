@@ -6,6 +6,7 @@ import { setUser } from "../../features/user/userSlice";
 import signOutAuth from "../../helpers/auth/signOutAuth";
 import getRooms from "../../helpers/db/getRooms";
 import { setRoom } from "../../features/room/roomSlice";
+import RoomCard from "./RoomCard";
 
 const Menu = () => {
   const dispatch = useAppDispatch();
@@ -41,25 +42,8 @@ const Menu = () => {
         <div className="w-full flex flex-col items-center mt-4">
           {rooms &&
             rooms.map(name => (
-              <div
-                className={`${
-                  room === name ? "border-black border-2" : ""
-                } bg-white text-2xl text-center rounded-lg py-3 w-[60%] mb-4`}
-                onClick={() => {
-                  dispatch(
-                    setRoom({
-                      roomName: name,
-                    })
-                  );
-                  dispatch(
-                    setMobileMenu({
-                      shown: false,
-                    })
-                  );
-                }}
-                key={name}
-              >
-                <p>{name}</p>
+              <div key={name} className="w-full">
+                <RoomCard name={name} />
               </div>
             ))}
         </div>

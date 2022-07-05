@@ -11,4 +11,10 @@ export const rainbowHoverVariant = {
       ease: "easeInOut",
     },
   },
+  whiteVisible: {
+    backgroundColor: ["#FFF", "#9b65ff", "#00c0fa", "#ff5329"],
+    transition: {
+      ease: "easeInOut",
+    },
+  },
 };
