@@ -49,7 +49,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-col items-center h-screen">
       <div className="my-8">
-        <Image src={"/assets/logo.png"} width={220} height={200} alt="logo" />
+        <Image src={"/assets/Logo.png"} width={220} height={200} alt="logo" />
       </div>
       <div className="text-center mt-5">
         <h1 className="text-5xl mb-8">Sign In</h1>
