@@ -15,7 +15,7 @@ const MessageRoom = () => {
   const user = useAppSelector(state => state.user);
 
   useEffect(() => {
-    const unSub = onSnapshot(doc(db, room, "messages"), doc => {
+    const unSub = onSnapshot(doc(db, "rooms", room), doc => {
       setMessageData(doc.data());
     });
 
@@ -33,11 +33,7 @@ const MessageRoom = () => {
       <Nav />
       <div className="flex flex-col items-center h-[85%]">
         <MessagesSection messages={messages} user={user} />
-        <MessageInput
-          room={room}
-          messages={messages}
-          setMessageData={setMessageData}
-        />
+        <MessageInput room={room} messages={messages} />
       </div>
     </>
   );

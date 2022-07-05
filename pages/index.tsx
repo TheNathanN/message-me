@@ -1,8 +1,10 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script";
-import SignIn from "../components/SignIn";
+import type { NextPage } from "next";
 import { useAppSelector } from "../app/hooks";
+import { AnimatePresence, AnimationType, motion } from "framer-motion";
+
+import SignIn from "../components/SignIn";
 import MessageRoom from "../components/MessageRoom";
 import Menu from "../components/Menu";
 
@@ -20,9 +22,8 @@ const Home: NextPage = () => {
         src="https://kit.fontawesome.com/c4aa491b21.js"
         crossOrigin="anonymous"
       />
-
-      <main className="h-screen relative">
-        {mobileMenuShown && <Menu />}
+      <main className="h-screen relative overflow-hidden">
+        <AnimatePresence>{mobileMenuShown && <Menu />}</AnimatePresence>
         {user.uid === "" ? <SignIn /> : <MessageRoom />}
       </main>
     </>

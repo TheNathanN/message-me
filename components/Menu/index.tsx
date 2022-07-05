@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import signOutAuth from "../../helpers/auth/signOutAuth";
+import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setMobileMenu } from "../../features/mobileMenu/mobileMenuSlice";
 import { setUser } from "../../features/user/userSlice";
+import signOutAuth from "../../helpers/auth/signOutAuth";
+import getRooms from "../../helpers/db/getRooms";
 
 const Menu = () => {
   const dispatch = useAppDispatch();
@@ -20,17 +22,23 @@ const Menu = () => {
   };
 
   return (
-    <div className="absolute w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20">
+    <motion.div
+      initial={{ x: "100vw" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100vw" }}
+      transition={{ type: "tween", ease: "easeInOut" }}
+      className="absolute flex flex-col items-center justify-between w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 pb-2"
+    >
       <div>
-        <h2>Chat Rooms</h2>
+        <h2 className="text-3xl">Chat Rooms</h2>
+        <div></div>
       </div>
       <div>
         <button onClick={clickHandler}>
-          Sign Out
-          <i className="fa-solid fa-right-from-bracket"></i>
+          Sign Out <i className="fa-solid fa-right-from-bracket"></i>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

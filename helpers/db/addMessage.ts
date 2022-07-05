@@ -3,22 +3,27 @@ import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore";
 import { Sender } from "../../types";
 import db from "./db";
 
-const addMessage = async (room: string, message: string, sender: Sender) => {
+const addMessage = async (
+  room: string,
+  message: string,
+  sender: Sender,
+  messages: any
+) => {
   const newMessage = {
     id: uuidv4(),
     message,
     sender,
-    time: new Timestamp(
-      Math.floor(Date.now() / 1000),
-      Math.floor(performance.now())
-    ),
+    time: Timestamp.fromDate(new Date()),
   };
 
-  const messagesRef = doc(db, room, "messages");
+  const messageArr = [...messages, newMessage];
+
+  const messagesRef = doc(db, "rooms", room);
+  console.log(messagesRef);
 
   try {
     await updateDoc(messagesRef, {
-      messages: arrayUnion(newMessage),
+      messages: messageArr,
     });
   } catch (err) {
     console.log(err);
