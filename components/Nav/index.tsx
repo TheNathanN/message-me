@@ -12,7 +12,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="relative z-20 flex items-center justify-between bg-black text-white pr-8 pl-4 py-1 text-2xl md:hidden">
+    <nav className="relative z-20 flex items-center justify-between bg-black text-white pr-8 pl-4 py-1 text-2xl lg:hidden">
       <div>
         <Image src={"/assets/Logo.png"} width={48} height={50} alt="logo" />
       </div>
