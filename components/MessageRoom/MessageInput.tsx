@@ -9,10 +9,9 @@ import { useAppSelector } from "../../app/hooks";
 
 interface Props {
   room: string;
-  messages: any;
 }
 
-const MessageInput = ({ room, messages }: Props) => {
+const MessageInput = ({ room }: Props) => {
   const user = useAppSelector(state => state.user);
   const [input, setInput] = useState("");
 
@@ -25,7 +24,7 @@ const MessageInput = ({ room, messages }: Props) => {
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     if (input !== "") {
       e.preventDefault();
-      await addMessage(room, input, sender, messages);
+      await addMessage(room, input, sender);
       setInput("");
     } else {
       throw new Error("There was an error sending the message");

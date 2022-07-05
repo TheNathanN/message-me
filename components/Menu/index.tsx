@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setMobileMenu } from "../../features/mobileMenu/mobileMenuSlice";
 import { setUser } from "../../features/user/userSlice";
 import signOutAuth from "../../helpers/auth/signOutAuth";
 import getRooms from "../../helpers/db/getRooms";
+import { DocumentData } from "firebase/firestore";
 
 const Menu = () => {
   const dispatch = useAppDispatch();
+  const [rooms, setRooms] = useState<DocumentData>();
+  const [roomNames, setRoomNames] = useState<string[]>();
   const [loggedOutUser, setLoggedOutUser] = useState({
     uid: "",
     displayName: "",
@@ -21,6 +24,17 @@ const Menu = () => {
     dispatch(setMobileMenu({ shown: false }));
   };
 
+  useEffect(() => {
+    getRooms(setRooms);
+  }, [setRooms]);
+
+  useEffect(() => {
+    if (rooms) {
+      const roomNamesArr = Object.keys(rooms).reverse();
+      setRoomNames(roomNamesArr);
+    }
+  }, [rooms, setRoomNames]);
+
   return (
     <motion.div
       initial={{ x: "100vw" }}
@@ -31,7 +45,14 @@ const Menu = () => {
     >
       <div>
         <h2 className="text-3xl">Chat Rooms</h2>
-        <div></div>
+        <div>
+          {roomNames &&
+            roomNames.map(name => (
+              <div key={name}>
+                <p>{name}</p>
+              </div>
+            ))}
+        </div>
       </div>
       <div>
         <button onClick={clickHandler}>

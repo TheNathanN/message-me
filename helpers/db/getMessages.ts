@@ -6,9 +6,12 @@ const getMessages = async (
   setMessages: React.Dispatch<React.SetStateAction<DocumentData | undefined>>
 ) => {
   try {
-    const querySnapshot = await getDocs(collection(db, "rooms"));
-    const messages = querySnapshot.docs[0].data();
-    setMessages(messages);
+    const querySnapshot = await getDocs(collection(db, "main"));
+    const rooms = querySnapshot.docs[0].data();
+    if (typeof room === "string") {
+      const messages = rooms[room];
+      setMessages(messages);
+    }
   } catch (err) {
     console.log(err);
   }

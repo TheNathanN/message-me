@@ -1,10 +1,13 @@
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, doc, DocumentData, getDocs } from "firebase/firestore";
 import db from "./db";
 
-const getRooms = async () => {
-  const querySnapshot = await getDocs(collection(db, "rooms"));
+const getRooms = async (
+  setRooms: React.Dispatch<React.SetStateAction<DocumentData | undefined>>
+) => {
+  const querySnapshot = await getDocs(collection(db, "main"));
   querySnapshot.forEach(item => {
-    console.log(item.data());
+    const rooms = item.data();
+    setRooms(rooms);
   });
 };
 
