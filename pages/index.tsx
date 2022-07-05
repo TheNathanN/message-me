@@ -16,7 +16,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Message Me!</title>
-        <link rel="icon" href="/assets/logo.png" />
+        <link rel="icon" href="/assets/Logo.png" />
       </Head>
       <Script
         src="https://kit.fontawesome.com/c4aa491b21.js"
