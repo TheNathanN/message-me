@@ -32,7 +32,7 @@ const MessageInput = ({ room }: Props) => {
   };
 
   return (
-    <form className="w-10/12 relative" onSubmit={submitHandler}>
+    <form className="w-10/12 relative lg:mb-8" onSubmit={submitHandler}>
       <input
         className="border-black border-[1px] rounded-full w-full pl-3 pr-[15%] h-10 outline-none shadow-xl"
         type="text"

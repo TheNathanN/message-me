@@ -7,6 +7,7 @@ import signOutAuth from "../../helpers/auth/signOutAuth";
 import getRooms from "../../helpers/db/getRooms";
 import { setRoom } from "../../features/room/roomSlice";
 import RoomCard from "./RoomCard";
+import Image from "next/image";
 
 const Menu = () => {
   const dispatch = useAppDispatch();
@@ -30,14 +31,12 @@ const Menu = () => {
   }, [setRooms]);
 
   return (
-    <motion.div
-      initial={{ x: "100vw" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100vw" }}
-      transition={{ type: "tween", ease: "easeInOut" }}
-      className="absolute flex flex-col items-center justify-between w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 pb-2"
-    >
-      <div className="w-full text-center">
+    <div className="absolute flex flex-col items-center justify-between w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 lg:w-full lg:h-full lg:relative lg:justify-start lg:pt-0">
+      <div className="hidden lg:block py-[10%]">
+        <Image src="/assets/Logo.png" width={200} height={200} alt="logo" />
+      </div>
+
+      <div className="w-full text-center lg:h-full">
         <h2 className="text-3xl">Chat Rooms</h2>
         <div className="w-full flex flex-col items-center mt-4">
           {rooms &&
@@ -49,12 +48,12 @@ const Menu = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mt-10 mb-4 text-lg">
         <button onClick={clickHandler}>
           Sign Out <i className="fa-solid fa-right-from-bracket"></i>
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

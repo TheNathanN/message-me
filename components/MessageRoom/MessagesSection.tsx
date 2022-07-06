@@ -11,7 +11,7 @@ const MessagesSection = ({ messages, user }: Props) => {
   const messageEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messageEndRef.current?.scrollIntoView();
   };
 
   useEffect(scrollToBottom, [messages]);
