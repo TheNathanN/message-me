@@ -16,6 +16,15 @@ const MessagesSection = ({ messages, user }: Props) => {
 
   useEffect(scrollToBottom, [messages]);
 
+  if (messages && messages.length < 1) {
+    return (
+      <p className="h-full flex items-center text-center">
+        No messages have been sent in this room yet. <br />
+        Be the first and send a message below!
+      </p>
+    );
+  }
+
   return (
     <section className="h-full py-4 overflow-scroll w-10/12 my-4 no-scrollbar">
       {messages &&
