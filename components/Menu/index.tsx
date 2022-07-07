@@ -31,12 +31,12 @@ const Menu = () => {
   }, [setRooms]);
 
   return (
-    <div className="absolute flex flex-col items-center justify-between w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 lg:w-full lg:h-full lg:relative lg:justify-start lg:pt-0">
-      <div className="hidden lg:block py-[10%]">
+    <div className="absolute flex flex-col items-center  w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 lg:w-full lg:h-full lg:relative justify-start lg:pt-0">
+      <div className="py-10 lg:py-[10%]">
         <Image src="/assets/Logo.png" width={200} height={200} alt="logo" />
       </div>
 
-      <div className="w-full text-center lg:h-full">
+      <div className="w-full text-center h-full">
         <h2 className="text-3xl">Chat Rooms</h2>
         <div className="w-full flex flex-col items-center mt-4">
           {rooms &&
