@@ -56,7 +56,9 @@ const MessagesSection = ({ messages, user }: Props) => {
               <p
                 className={`${
                   user.uid !== uid ? "bg-[#6A6A6A]" : "bg-[#2464E0]"
-                } w-40 px-4 py-2 rounded-md my-2`}
+                } min-w-[${
+                  message.length
+                }] max-w-[65%] px-4 py-2 rounded-md my-2`}
               >
                 {message.message}
               </p>
