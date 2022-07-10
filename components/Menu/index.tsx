@@ -31,7 +31,7 @@ const Menu = () => {
   }, [setRooms]);
 
   return (
-    <div className="absolute flex flex-col items-center  w-screen h-screen bg-[#E0E0E0] z-10 text-black pt-20 lg:w-full lg:h-full lg:relative justify-start lg:pt-0">
+    <div className="absolute flex flex-col items-center  w-screen h-screen overflow-scroll no-scrollbar bg-[#E0E0E0] z-10 text-black pt-20 lg:w-full lg:h-full lg:relative justify-start lg:pt-0">
       <div className="py-10 lg:py-[10%]">
         <Image src="/assets/Logo.png" width={200} height={200} alt="logo" />
       </div>
